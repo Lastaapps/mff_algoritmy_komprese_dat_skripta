@@ -19,6 +19,8 @@ The final study materials will be written in [Typst](https://typst.app/), a mode
 
 ## How to create a new chapter
 
+Do not read slides for lectures 2, 6, 16 and 18 as those PDF files are broken.
+
 -  **Context:** Always read `./definitions.typ` before doing other tasks. Before starting to any kind of work/changes on a lecture, first read a corresponding lecture PDF file in context and stick to it as much as possible. No details from the PDF slide should be lost.
 -  **Extract key concepts:** Identify and summarize the algorithms, data structures, compression algorithm, approaches and theoretical concepts from each presentation.
 -  **Simplify:** Rewrite the extracted information in clear and concise B2 level English. Do not be too verbose.
@@ -26,6 +28,7 @@ The final study materials will be written in [Typst](https://typst.app/), a mode
 -  **Theoretical completeness:** Make sure that all theorems, lemmas and observations are included and if the proof is provided, it is included as well.
 -  **Add tasks:** Read the slides again. Find all slides whole title is "Problems". Make sure all the problems from these slides are included and solved.
 -  **Format in Typst:** Create a `.typ` file for each topic in the `notes/` directory, formatting the content using Typst's syntax. Before writing, consult with the Typst rules listed bellow.
+-  **Finalizing:** Make sure all the previous steps are done and that nothing form the slides is missed! Reduce wordiness, fix mistakes and make sure formatting and styling is consistent.
 
 ## Text format
 
@@ -47,9 +50,11 @@ Never use backslashes, only for escaping!!!
 - For Greek letters math mode $ alpha $.
 - Typst syntax and naming differs from LaTeX.
 - Text in math mode is enclosed in double quotes e.g., `$ a "is substring of" b $`.
+- Functions have one default parameter (for boxes from `definitions.typ` it's name is `body`). This parameter must NOT be specified.
 
 ### Math Mode Variables and Subscripts
 
--   Variables in math mode should be directly written, e.g., $T$, $n$, $P$.
--   Multi-character subscripts or superscripts in math mode are enclosed in regular parentheses and followed by a space, e.g., `$h_("new") (x)$`, `$T^(T) dot A$`.
-
+- Variables in math mode should be directly written, e.g., $T$, $n$, $P$.
+- Multi-character subscripts or superscripts in math mode are enclosed in regular parentheses and followed by a space, e.g., `$h_("new") (x)$`, `$T^(T) dot A$`.
+- Use $ 1 dot 2 $ for multiplication and $ A times B $ for product.
+- NEVER PREFIX GREEK LETTERS BY BACKSLASH.

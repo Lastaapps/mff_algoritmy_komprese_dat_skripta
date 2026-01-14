@@ -41,32 +41,35 @@
 #let theorem(title: none, body) = {
   info_box(
     title: if title != none { "Theorem: " + title } else { "Theorem" },
-    body: body,
+    body,
   )
 }
 
 #let lemma(title: none, body) = {
   info_box(
     title: if title != none { "Lemma: " + title } else { "Lemma" },
-    body: body,
+    body,
   )
 }
 
 #let observation(title: none, body) = {
   info_box(
     title: if title != none { "Observation: " + title } else { "Observation" },
-    body: body,
+    body,
   )
 }
 
+#let proposition(body) = {
+  example_box(title: "Proof", body)
+}
+
 #let proof(body) = {
-  example_box(title: "Proof", body: body)
+  example_box(title: "Proof", body)
 }
 
 #let task(title: none, body) = {
   info_box(
     title: if title != none { "Task: " + title } else { "Task" },
-    body: body,
+    body,
   )
 }
-
