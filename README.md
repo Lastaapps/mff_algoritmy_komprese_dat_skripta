@@ -1,0 +1,35 @@
+# Data Compression Algorithms (lecture notes)
+
+You can **download the latest version** of the PDF from the [GitHub Actions artifacts](https://github.com/Lastaapps/mff_algoritmy_komprese_dat_skripta/actions).
+
+This project contains study materials for the "Text Algorithms" course taught at the Faculty of Mathematics and Physics, Charles University in Prague (MFF CUNI).
+
+To obtain **edit access**, contact me, see my [CV](https://github.com/Lastaapps) for contacts. Typst is easy!
+
+The goal of this project is to create good enough lecture notes for each topic covered in the course.
+This material is meant as a supplement to the presentations provided.
+There may be some divergence from the slides, some problems or lemmas may be missing.
+Still, I find it a great source to understand the topic,
+while the details for the exam should be learned from the slides.
+
+## Source Materials
+
+The foundation for these materials are the lecture presentations from the "Data Compression Algorithms" course at MFF CUNI created by doc. RNDr. Tomáš Dvořák, CSc.
+
+## How to Build
+
+To compile the project and generate the `main.pdf` file, you need to have [Typst](https://typst.app/) installed. Then, run the following command from the project's root directory:
+
+```bash
+make build
+# or
+typst compile main.typ
+```
+
+This will create the `main.pdf` file in the root directory.
+
+Before each commit, use `typstyle -i .` to format the code and avoid Git conflicts. You can set up a pre-commit hook.
+
+## Disclaimer
+
+These materials are created with the help of an AI model and are intended for study purposes only. They may not be a perfect representation of the original lectures and may contain errors. Please use them in conjunction with the official course materials. The materials where human (student) reviewed, feel free to fix any mistakes or improve the text.
