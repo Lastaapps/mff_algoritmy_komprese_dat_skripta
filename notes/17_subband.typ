@@ -65,3 +65,25 @@ Subband coding is also used for image compression.
 - The decomposition is done in 2D by applying filters separately to the rows and columns of the image. This typically results in four sub-images: LL (low-low frequency), LH, HL, and HH.
 - The process can be applied recursively to the LL sub-image to create a multi-resolution representation.
 - *Wavelet transforms* are a sophisticated form of subband filtering used in JPEG 2000. They provide excellent energy compaction and allow for features like progressive transmission and region-of-interest coding.
+
+== Problems
+
+#task(title: "The Downsampling Solution", [
+  *Problem*: When a signal is split into a low-pass band {$y_n$} and a high-pass band {$z_n$}, we have twice as many total samples as the original signal {$x_n$}. How is this addressed to achieve compression? \
+  *Solution*: This is solved by *downsampling* (also called decimation). Since the low-pass and high-pass filters each halve the signal's bandwidth, the Nyquist theorem allows us to discard every other sample from both {$y_n$} and {$z_n$} without losing information from that band. The two resulting half-length signals ({$y_{2n}$} and {$z_{2n}$}) together have the same number of samples as the original signal. The signal can be perfectly reconstructed from these downsampled signals during synthesis.
+])
+
+#task(title: "Huffman Coding over Extended Alphabets", [
+  *Question*: Derive the lower and upper bounds on the average codeword length for the Huffman code over an alphabet extended to n-grams (blocks of n symbols). Assume symbols are independent and have the same entropy H. \
+  *Solution*:
+  - Let the original alphabet be $A$ with entropy $H$.
+  - The extended alphabet $A^n$ consists of all possible n-grams. The entropy of this extended source, due to the independence of symbols, is $H(A^n) = n dot H(A)$.
+  - Let $L_n$ be the average codeword length for the Huffman code over the extended alphabet $A^n$.
+  - According to Shannon's source coding theorem, the average length is bounded by the entropy of the source. For the n-gram source, this gives:
+    $ H(A^n) <= L_n < H(A^n) + 1 $
+  - Substituting $H(A^n) = n H(A)$:
+    $ n H(A) <= L_n < n H(A) + 1 $
+  - The average codeword length *per original symbol* is $L_n / n$. Dividing the inequality by $n$:
+    $ H(A) <= L_n/n < H(A) + 1/n $
+  - As $n -> infinity$, the term $1/n -> 0$. This shows that by encoding larger and larger blocks (n-grams), the average number of bits per original symbol can be made to approach the entropy $H(A)$, which is the theoretical limit of compression.
+])

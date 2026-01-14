@@ -104,3 +104,26 @@ The effectiveness of any statistical compression algorithm, including arithmetic
 - For a source generating independent and identically distributed (i.i.d.) random variables, the entropy $H(X)$ accurately reflects the average information per symbol.
 - When symbols are dependent (e.g., in natural language, where the probability of a letter depends on the preceding letters), more sophisticated models are needed. These often involve estimating conditional probabilities, like $p(x_i | x_1 x_2 ... x_{i-1})$.
 - A common approach is to use a *finite context model*, where the probability of a symbol depends only on a limited number of preceding symbols: $p(x_i | x_{i-k} ... x_{i-1})$.
+
+== Problems
+
+#task(title: "Entropy of a Discrete Random Vector", [
+  *Question*: Define the entropy for a discrete random vector. \
+  *Solution*: The entropy of a discrete random vector $X = (X_1, X_2, ..., X_n)$ is the joint entropy, which is calculated over the joint probability distribution $p(x_1, x_2, ..., x_n)$:
+  $ H(X) = - sum_(x_1, ..., x_n) p(x_1, ..., x_n) log_2 p(x_1, ..., x_n) $
+])
+
+#task(title: "Entropy of Independent Random Variables", [
+  *Question*: Prove or disprove: For an n-dimensional random vector $X=(X_1,...,X_n)$ whose components are independent random variables with the same probability distribution, we have $H(X) = n \cdot H(X_i)$. \
+  *Solution*: The statement is true.
+  - Since the variables are independent, the joint probability is the product of the individual probabilities: $p(x_1, ..., x_n) = p(x_1)p(x_2)...p(x_n)$.
+  - Substituting this into the entropy formula:
+    $ H(X) = - sum_(x_1, ..., x_n) (p(x_1)...p(x_n)) log_2 (p(x_1)...p(x_n)) $
+  - Using the property $log(a b) = log(a) + log(b)$:
+    $
+      H(X) = - sum_(x_1, ..., x_n) (p(x_1)...p(x_n)) (log_2 p(x_1) + ... + log_2 p(x_n))
+    $
+  - This can be split into $n$ separate sums. For each component $X_i$, the sum over all other variables $X_j$ (where $j != i$) will be 1.
+  - This leaves us with the sum of the individual entropies: $H(X) = H(X_1) + H(X_2) + ... + H(X_n)$.
+  - Since all components have the same probability distribution, $H(X_i)$ is the same for all $i$. Therefore, $H(X) = n \cdot H(X_i)$.
+])

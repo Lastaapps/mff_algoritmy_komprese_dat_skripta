@@ -80,3 +80,19 @@ Companding (compressing + expanding) is a form of non-uniform quantization that 
 - *A-law*: Used in European telephony systems. It offers lower relative distortion for small values.
 
 Both $\mu$-law and A-law are standardized in ITU-T G.711 for pulse-code modulation (PCM) of voice frequencies. They map 14-bit (for $\mu$-law) or 13-bit (for A-law) linear PCM samples to 8-bit companded samples, reducing the data rate from 64 Kbps to 48-56 Kbps with acceptable voice quality.
+
+== Problems
+
+#task(title: "Signal-to-Noise Ratio (SNR) for Uniform Quantization", [
+  *Question*: Show that for a signal with a uniform probability distribution, quantized with a uniform n-bit quantizer, the Signal-to-Noise Ratio (SNR) is approximately $6.02n$ dB.
+
+  *Solution*:
+  - With n-bit samples, we have $2^n$ quantization levels.
+  - For a uniform signal distribution, the quantization error (noise) can be modeled as a uniform random variable with a variance of approximately $Delta^2/12$, where $Delta$ is the step size.
+  - The total signal range is proportional to $2^n Delta$. The signal variance is proportional to $(2^n Delta)^2$.
+  - The SNR in dB is given by $10 log_{10}("Signal Power" / "Noise Power")$.
+  - $"SNR" = 10 log_{10}( ((2^n Delta)^2 / k_1) / (Delta^2 / 12) )$ for some constant $k_1$.
+  - $"SNR" approx 10 log_{10}( (2^n)^2 ) = 20 log_{10}(2^n) = 20n log_{10}(2)$.
+  - Since $log_{10}(2) approx 0.301$, the SNR is approximately $20n dot 0.301 = 6.02n$ dB.
+  - For a 16-bit sample, this gives an SNR of approximately $16 dot 6.02 approx 96$ dB.
+])

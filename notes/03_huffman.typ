@@ -84,3 +84,16 @@ The Kraft-McMillan inequality provides a condition for the existence of a unique
   *Question*: What is the maximum height of a Huffman tree for an input message of length $n$? \
   *Solution*: The maximum height of a Huffman tree occurs in the case of a skewed tree, which can happen with certain frequency distributions (e.g., Fibonacci-like sequences). For an alphabet of size $|A|$, the maximum height can be $|A|-1$.
 ])
+
+#task(title: "Non-Huffman Optimal Codes", [
+  *Question*: Is there an optimal prefix code which cannot be obtained using the Huffman algorithm? \
+  *Solution*: No. The Huffman algorithm is guaranteed to produce an optimal prefix code. Any other prefix code with the same average length is also optimal, but it can be shown that such codes can be transformed into a standard Huffman tree. For a given set of frequencies, while there might be multiple different optimal prefix codes (e.g., by swapping 0s and 1s), they all achieve the same minimum average codeword length, and at least one of them will be a Huffman code.
+])
+
+#task(title: "M-ary Huffman Coding", [
+  *Question*: Generalize the construction of binary Huffman code to the case of an m-ary coding alphabet (where $m > 2$). \
+  *Solution*: The algorithm can be generalized. The core idea is to group the least frequent symbols together.
+  1. At each step, instead of merging 2 nodes, we merge $m$ nodes.
+  2. If the number of symbols minus 1 is not a multiple of $m-1$, dummy symbols with a frequency of 0 must be added until this condition is met. This ensures that the construction results in a full m-ary tree.
+  3. The rest of the algorithm proceeds as usual: the $m$ nodes with the lowest frequencies are combined into a new parent node whose frequency is the sum of its children's frequencies.
+])

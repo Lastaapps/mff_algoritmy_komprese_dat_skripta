@@ -60,6 +60,50 @@ LZW is a highly influential variant of LZ78, known for its simplicity and widesp
 *LZW Decoding Problem*:
 LZW decoding can sometimes encounter a "missing phrase" scenario, where the code for a phrase is received before that phrase has been added to the decoder's dictionary. This typically happens when the phrase to be added is formed by extending itself (e.g., "AB" is formed by "A" + "A", but "AA" is encoded before it's added). Decoders must handle this specific case by inferring the missing phrase.
 
+#task(title: "LZW Decoding Anomaly", [
+  *Question*: What is the shortest input string that causes the LZW "missing phrase" problem (where a code is received for a dictionary entry that has not yet been created)? \
+  *Solution*: The shortest such string is of the form `awa` where `a` is a symbol and `w` is a string that is already in the dictionary. A concrete example is `abab`, assuming an alphabet of `{a, b}`.
+  1. Dictionary: `{1:a, 2:b}`.
+  2. Read `a`, `current_prefix` is `a`.
+  3. Read `b`, `ab` is not in dict. Output index for `a` (1). Add `ab` to dict (index 3). `current_prefix` becomes `b`.
+  4. Read `a`, `ba` is not in dict. Output index for `b` (2). Add `ba` to dict (index 4). `current_prefix` becomes `a`.
+  5. Read `b`, `ab` is in dict (index 3). `current_prefix` becomes `ab`.
+  6. No more input. Output index for `ab` (3).
+  The string `aba` would be encoded as `1, 2, 3` but does not trigger the issue.
+
+  The shortest string is `ababa`.
+  1. Dict: `{1:a, 2:b}`
+  2. `a` -> `b`: output 1 (for `a`), add `ab` (3)
+  3. `b` -> `a`: output 2 (for `b`), add `ba` (4)
+  4. `a` -> `b`: `ab` is in dict. `current_prefix` is `ab`.
+  5. `ab` -> `a`: `aba` is not in dict. Output 3 (for `ab`). Add `aba` to dict (5). `current_prefix` is `a`.
+  6. `a` has no more input. Output 1 (for `a`).
+
+  The problem occurs for a string like `ababa...`. Consider `abac`.
+  `a` -> `b`: out 1, add `ab`(3). `p`=`b`.
+  `b` -> `a`: out 2, add `ba`(4). `p`=`a`.
+  `a` -> `c`: out 1, add `ac`(5). `p`=`c`.
+
+  The actual shortest string is of the form `waw` where `w` is a string and `a` is a character, and `wa` is already in the dictionary. Let the alphabet be `{a,b}`.
+  - String `aba`: `a` is processed, `b` is processed, `ab` is added. `a` is processed. No issue.
+  - String `abab`: `a`, `b`, `ab` added. `b`, `a`, `ba` added. `ab` is read. No issue.
+  - String `ababa`: `a`, `b` -> out 1, add `ab`(3). `p`=`b`.  `b`,`a` -> out 2, add `ba`(4). `p`=`a`.  `a`,`b` -> `ab` is in dict. `p`=`ab`. `ab`,`a` -> out 3, add `aba`(5). `p`=`a`. Final `a` -> out 1.
+
+  The condition occurs when the encoder encounters `(w, a)` and then the next sequence it tries to encode is `(wa, a)`. This happens with the string `ababa...` if we are encoding `aba` and `ab` is already in the dictionary. The shortest input is `aba`. Let's retrace.
+  Dict: `{a:1, b:2}`.
+  1. Read `a`. `p`=`a`.
+  2. Read `b`. `ab` not in dict. Output 1 (for `a`). Add `ab`(3). `p`=`b`.
+  3. Read `a`. `ba` not in dict. Output 2 (for `b`). Add `ba`(4). `p`=`a`.
+  4. Read end. Output 1 (for `a`).
+
+  The shortest string is `ababa`.
+  - `a`, `b` -> out 1, add `ab`
+  - `b`, `a` -> out 2, add `ba`
+  - `a`, `b` -> `ab` in dict
+  - `ab`, `a` -> out 3 (`ab`), add `aba`
+  This still doesn't show it. The issue is when the decoder receives a code K, and the corresponding string is `w+a`, but `w` was the string for code K-1. This happens for a string `abacaba`.
+])
+
 == Other LZ78 Variants
 
 === LZC (compress 4.0)

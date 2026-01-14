@@ -31,6 +31,15 @@ For now, we focus on encodings where each phrase is a single symbol from the alp
   $ K^*(s_1s_2...s_n) = K(s_1)K(s_2)...K(s_n) $
 - A code $K$ is *uniquely decodable* if its generated encoding $K^*$ is uniquely decodable.
 
+#task(title: "Uniquely Decodable Codes", [
+  *Input*: A set of codewords for a source alphabet $A$. \
+  *Question*: Does it define a uniquely decodable code?
+
+  *Examples*:
+  - `{0, 01, 11}`: Not uniquely decodable. The string "011" could be decoded as "0" + "11" or "01" + "1".
+  - `{0, 01, 10}`: Uniquely decodable. No codeword is a prefix of another, and no concatenation of codewords can be misinterpreted.
+])
+
 == Prefix Codes
 - *Prefix*: A string $s'$ is a prefix of a string $s$ if $s$ starts with $s'$.
 - *Prefix Code*: A code where no codeword is a prefix of another codeword.

@@ -54,3 +54,16 @@ Constructing the $n times n$ matrix of cyclic shifts and sorting it explicitly i
 
 - A *suffix array* for a string $x$ is an array of integers that specifies the starting positions of all suffixes of $x$ in lexicographical order.
 - This allows the determination of the sorted cyclic shifts (and thus the last column $L$) without explicitly constructing the full matrix. It dramatically reduces the time and memory complexity for the BWT.
+
+== Problems
+
+#task(title: "BWT Decoding in Original Order", [
+  *Question*: Modify the BWT decoding algorithm to return the symbols in the original order, rather than in reverse order. \
+  *Hint*: Start with $F[I]$.
+
+  *Solution*: The standard decoding algorithm reconstructs the string backward. To reconstruct it forward, we need to find the first character and then the subsequent ones.
+  1. The character $F[I]$ is the first character of the original string $x$. Output $F[I]$.
+  2. The next character is $F[T[I]]$. Output $F[T[I]]$.
+  3. The character after that is $F[T[T[I]]]$, and so on.
+  4. The forward reconstruction is therefore: $x_k = F[T^k[I]]$ for $k=0, 1, ..., n-1$.
+])
