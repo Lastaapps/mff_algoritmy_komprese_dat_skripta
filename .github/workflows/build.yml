@@ -26,4 +26,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: data-compression-algorithms-notes
-          path: main.pdf
+          path: "Data Compression Algorithms.pdf"
