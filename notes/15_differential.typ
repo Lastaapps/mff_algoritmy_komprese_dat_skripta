@@ -61,6 +61,11 @@ Delta Modulation is a simplified form of DPCM specifically for speech coding.
   - It often involves *oversampling* the signal (sampling at a rate much higher than the Nyquist rate).
 ])
 
+#figure(
+  image("../figures/15-delta_modulation.png", width: 80%),
+  caption: "Delta modulation.",
+)
+
 *Problems with Fixed $Delta$*:
 - *Slope Overload*: If the input signal changes too rapidly, the reconstructed signal cannot keep up, leading to large errors.
 - *Granular Noise*: If the input signal is constant or changes very slowly, the reconstructed output alternates up and down by $Delta$, creating noise.
@@ -69,3 +74,11 @@ Delta Modulation is a simplified form of DPCM specifically for speech coding.
 To solve these problems, the step size $Delta$ can be adapted. In *Constant Factor Adaptive Delta Modulation (CFDM)*, the step size is increased in overload regions and decreased in granular regions.
 - The region is identified based on the history of the quantizer output. For example, if the last two outputs were the same sign ($s_(n)$ = $s_(n-1)$), it indicates slope overload, so $Delta$ is increased. If the signs differ, it indicates a granular region, so $Delta$ is decreased.
 - This technique was used in early space shuttle to ground terminal communications.
+
+#figure(
+  image(
+    "../figures/15-constant_factor_adaptive_delta_modulation.png",
+    width: 80%,
+  ),
+  caption: "Constant factor adaptive delta modulation.",
+)

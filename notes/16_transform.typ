@@ -25,6 +25,16 @@ The KLT is theoretically the optimal transform for energy compaction. Its transf
 The DCT is a fixed, data-independent transform that provides excellent energy compaction and is very close to the optimal KLT for highly correlated signals (like images). It has become the industry standard for image and video compression.
 - *Why DCT is better than DFT (Discrete Fourier Transform)*: The DFT assumes the signal is periodic. When applied to a non-periodic block, it introduces sharp discontinuities at the block boundaries, spreading energy into high-frequency coefficients. The DCT, by mirroring the signal, avoids these discontinuities, leading to much better energy compaction.
 
+#figure(
+  image("../figures/16-DCT_comparision.png", width: 80%),
+  caption: "Comparison of DCT and DFT energy compaction.",
+)
+
+#figure(
+  image("../figures/16-DFT_comparision.png", width: 80%),
+  caption: "DFT comparison.",
+)
+
 === Other Transforms
 - *Discrete Sine Transform (DST)*: Similar to DCT, but better suited for sources with low correlation.
 - *Discrete Walsh-Hadamard Transform (DWHT)*: Computationally very fast as it uses only additions and subtractions. However, its energy compaction is significantly worse than DCT.
@@ -35,6 +45,11 @@ After transformation, many coefficients (especially high-frequency ones) are sma
 - *Zonal Sampling*: Allocates bits to coefficients based on their expected variance. More bits are allocated to low-frequency coefficients and fewer or none to high-frequency ones. This is simple but not adaptive to the content of a specific block.
 - *Threshold Coding*: Discards coefficients that fall below a certain threshold.
 - *Zigzag Scan*: To capitalize on the large number of zero-valued high-frequency coefficients, the 2D block of quantized coefficients is scanned in a zigzag pattern. This groups the low-frequency coefficients at the beginning and creates long runs of zeros at the end, which can be efficiently compressed using run-length encoding (e.g., with a special End-of-Block (EOB) symbol).
+
+#figure(
+  image("../figures/16-zigzag_scan.png", width: 50%),
+  caption: "Zigzag scan of quantized DCT coefficients.",
+)
 
 == Application: JPEG
 The JPEG (Joint Photographic Experts Group) standard is the most common application of transform coding.

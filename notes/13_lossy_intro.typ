@@ -61,10 +61,20 @@ Quantization is the process of mapping values from a large (often continuous) se
 - *Scalar Quantization*: Quantizes each sample independently.
 - *Vector Quantization*: Quantizes blocks of samples together.
 
+#figure(
+  image("../figures/13-3bit_quantizer.png", width: 80%),
+  caption: "A 3-bit quantizer.",
+)
+
 === Types of Quantizers
 - *Uniform Quantization*: Uses quantization intervals of equal length. This is optimal when the input data has a uniform probability distribution.
   - *Midrise Quantizer*: The origin (0) is at the midpoint of an interval. Used when the number of quantization levels $M$ is even.
   - *Midtread Quantizer*: The origin (0) is an endpoint of an interval, resulting in a quantization level at zero. Used when $M$ is odd.
+
+#figure(
+  image("../figures/13-midrise_midtread_quantizer.png", width: 80%),
+  caption: "Midrise and Midtread quantizers.",
+)
 - *Nonuniform Quantization*: Uses quantization intervals of varying lengths, typically shorter intervals for more probable values and longer intervals for less probable values. This is suitable for signals with non-uniform probability distributions (e.g., speech, which often has a concentration of small amplitudes).
 
 === Adaptive Quantization
@@ -73,7 +83,18 @@ Adaptive quantizers adjust their parameters (e.g., step size, interval boundarie
 - *Forward Adaptive Quantization (Off-line)*: Analyzes blocks of input data first to set quantizer parameters, which are then transmitted as side information.
 - *Backward Adaptive Quantization (On-line)*: Adjusts parameters based on previously quantized (and decoded) samples. No side information is needed. The *Jayant quantizer* is a common example, where the step size is adjusted based on the output of the previous quantization step.
 
+#figure(
+  image("../figures/13-3bit_Jayant_quantizer.png", width: 80%),
+  caption: "A 3-bit Jayant quantizer.",
+)
+
 == Companding: $\mu$-law and A-law
+
+#figure(
+  image("../figures/13-companding.png", width: 80%),
+  caption: "An illustration of the companding process.",
+)
+
 Companding (compressing + expanding) is a form of non-uniform quantization that first compresses the dynamic range of the analog signal before uniform quantization, and then expands it after decoding. This effectively provides more quantization levels for small amplitude signals.
 
 - *$\mu$-law (Mu-law)*: Used in North American and Japanese telephony systems. It provides higher dynamic range and noise reduction in blocks of silence.

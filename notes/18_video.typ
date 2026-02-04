@@ -36,6 +36,11 @@ An early ITU-T standard for videotelephony and videoconferencing, laying the gro
   6. *Entropy Coding*: The quantized coefficients are losslessly coded.
 ])
 
+#figure(
+  image("../figures/18-H.261_scheme.png", width: 80%),
+  caption: "H.261 scheme.",
+)
+
 == Motion Compensation
 The core of modern video compression is motion compensation, which exploits temporal redundancy between frames.
 - *Idea*: Instead of simply using the same position from the previous frame for prediction, the encoder searches for the best-matching block in a search area of the previous frame.
