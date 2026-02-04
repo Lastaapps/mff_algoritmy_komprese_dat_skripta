@@ -90,9 +90,9 @@ Both $\mu$-law and A-law are standardized in ITU-T G.711 for pulse-code modulati
   - With n-bit samples, we have $2^n$ quantization levels.
   - For a uniform signal distribution, the quantization error (noise) can be modeled as a uniform random variable with a variance of approximately $Delta^2/12$, where $Delta$ is the step size.
   - The total signal range is proportional to $2^n Delta$. The signal variance is proportional to $(2^n Delta)^2$.
-  - The SNR in dB is given by $10 log_{10}("Signal Power" / "Noise Power")$.
-  - $"SNR" = 10 log_{10}( ((2^n Delta)^2 / k_1) / (Delta^2 / 12) )$ for some constant $k_1$.
-  - $"SNR" approx 10 log_{10}( (2^n)^2 ) = 20 log_{10}(2^n) = 20n log_{10}(2)$.
-  - Since $log_{10}(2) approx 0.301$, the SNR is approximately $20n dot 0.301 = 6.02n$ dB.
+  - The SNR in dB is given by $10 log_(10)("Signal Power" / "Noise Power")$.
+  - $"SNR" = 10 log_(10)( ((2^n Delta)^2 / k_1) / (Delta^2 / 12) )$ for some constant $k_1$.
+  - $"SNR" approx 10 log_(10)( (2^n)^2 ) = 20 log_(10)(2^n) = 20n log_(10)(2)$.
+  - Since $log_(10)(2) approx 0.301$, the SNR is approximately $20n dot 0.301 = 6.02n$ dB.
   - For a 16-bit sample, this gives an SNR of approximately $16 dot 6.02 approx 96$ dB.
 ])

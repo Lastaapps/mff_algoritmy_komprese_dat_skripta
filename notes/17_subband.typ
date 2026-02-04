@@ -69,8 +69,8 @@ Subband coding is also used for image compression.
 == Problems
 
 #task(title: "The Downsampling Solution", [
-  *Problem*: When a signal is split into a low-pass band {$y_n$} and a high-pass band {$z_n$}, we have twice as many total samples as the original signal {$x_n$}. How is this addressed to achieve compression? \
-  *Solution*: This is solved by *downsampling* (also called decimation). Since the low-pass and high-pass filters each halve the signal's bandwidth, the Nyquist theorem allows us to discard every other sample from both {$y_n$} and {$z_n$} without losing information from that band. The two resulting half-length signals ({$y_{2n}$} and {$z_{2n}$}) together have the same number of samples as the original signal. The signal can be perfectly reconstructed from these downsampled signals during synthesis.
+  *Problem*: When a signal is split into a low-pass band ${y_(n)}$ and a high-pass band ${z_n}$, we have twice as many total samples as the original signal ${x_n}$. How is this addressed to achieve compression? \
+  *Solution*: This is solved by *downsampling* (also called decimation). Since the low-pass and high-pass filters each halve the signal's bandwidth, the Nyquist theorem allows us to discard every other sample from both ${y_n}$ and ${z_n}$ without losing information from that band. The two resulting half-length signals ($y_(2n)$ and $z_(2n)$) together have the same number of samples as the original signal. The signal can be perfectly reconstructed from these downsampled signals during synthesis.
 ])
 
 #task(title: "Huffman Coding over Extended Alphabets", [

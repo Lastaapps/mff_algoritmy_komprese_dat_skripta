@@ -8,7 +8,7 @@
 Differential encoding is a predictive coding technique that exploits the high sample-to-sample correlation found in many types of signals, such as speech and images. Instead of encoding the value of each sample directly, it encodes the *difference* between the current sample and a prediction of it.
 
 *Key Rationale*:
-- For signals where samples do not change drastically, the sequence of differences ($d_n = x_n - x_{n-1}$) will have a narrower range and smaller variance than the original sequence of samples {$x_n$}.
+- For signals where samples do not change drastically, the sequence of differences ($d_n = x_n - x_(n-1)$) will have a narrower range and smaller variance than the original sequence of samples $x_(n)$.
 - This sequence of differences can be quantized and encoded more efficiently.
 
 == Differential Pulse-Code Modulation (DPCM)
@@ -18,7 +18,7 @@ DPCM is a fundamental differential encoding technique. It formalizes the idea of
   Instead of using the previous sample as a predictor, a more general function can be used. The goal is to make the prediction error $d_n$ as small as possible.
 
   - *Prediction*: A prediction $p_n$ of the current sample $x_n$ is made based on previous *reconstructed* samples:
-    $ p_n = f(hat(x)_{n-1}, hat(x)_{n-2}, ..., hat(x)_0) $
+    $ p_n = f(hat(x)_(n-1), $hat(x)_(n-2)$, ...,$hat(x)_(0)$)$
   - *Prediction Error*: The difference to be encoded is:
     $ d_n = x_n - p_n $
 
@@ -27,7 +27,7 @@ DPCM is a fundamental differential encoding technique. It formalizes the idea of
 
 === Linear Predictor
 A common choice for the prediction function is a linear combination of previous samples:
-$ p_n = sum_(i=1)^N a_i hat(x)_{n-i} $
+$p_n = sum_(i=1)^N a_i hat(x)_(n-i)$
 The goal is to find the coefficients $a_i$ that minimize the mean squared error (MSE) of the prediction, $sigma^2 = E[(x_n - p_n)^2]$.
 
 === Wiener-Hopf Equations
@@ -43,8 +43,8 @@ In practice, signal statistics can change over time. ADPCM adapts the predictor 
 
 === LMS (Least Mean Squared) Algorithm
 The LMS algorithm is a simple and effective method for backward adaptive prediction. It updates the predictor coefficients iteratively:
-$ A^(n+1) = A^(n) + alpha hat(d)_n hat(X)_{n-1} $
-where $A$ is the vector of coefficients, $alpha$ is a small learning rate, $hat{d}_n$ is the quantized difference, and $hat{X}_{n-1}$ is the vector of past reconstructed samples.
+$ A^(n+1) = A^(n) + alpha hat(d)_(n) hat(X)_(n-1) $
+where $A$ is the vector of coefficients, $alpha$ is a small learning rate, $hat{d}_n$ is the quantized difference, and $hat{X}_(n-1)$ is the vector of past reconstructed samples.
 
 === G.726 Standard
 G.726 is an ITU-T standard for speech compression based on ADPCM.
@@ -67,5 +67,5 @@ Delta Modulation is a simplified form of DPCM specifically for speech coding.
 
 === Adaptive Delta Modulation (ADM)
 To solve these problems, the step size $Delta$ can be adapted. In *Constant Factor Adaptive Delta Modulation (CFDM)*, the step size is increased in overload regions and decreased in granular regions.
-- The region is identified based on the history of the quantizer output. For example, if the last two outputs were the same sign ($s_n = s_{n-1}$), it indicates slope overload, so $Delta$ is increased. If the signs differ, it indicates a granular region, so $Delta$ is decreased.
+- The region is identified based on the history of the quantizer output. For example, if the last two outputs were the same sign ($s_(n)$ = $s_(n-1)$), it indicates slope overload, so $Delta$ is increased. If the signs differ, it indicates a granular region, so $Delta$ is decreased.
 - This technique was used in early space shuttle to ground terminal communications.

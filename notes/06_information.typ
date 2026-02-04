@@ -102,8 +102,8 @@ For arithmetic coding, the bounds on the average codeword length are slightly di
 The effectiveness of any statistical compression algorithm, including arithmetic coding, heavily depends on the accuracy of its probabilistic model.
 
 - For a source generating independent and identically distributed (i.i.d.) random variables, the entropy $H(X)$ accurately reflects the average information per symbol.
-- When symbols are dependent (e.g., in natural language, where the probability of a letter depends on the preceding letters), more sophisticated models are needed. These often involve estimating conditional probabilities, like $p(x_i | x_1 x_2 ... x_{i-1})$.
-- A common approach is to use a *finite context model*, where the probability of a symbol depends only on a limited number of preceding symbols: $p(x_i | x_{i-k} ... x_{i-1})$.
+- When symbols are dependent (e.g., in natural language, where the probability of a letter depends on the preceding letters), more sophisticated models are needed. These often involve estimating conditional probabilities, like $p($x_(i)$ | x_1 x_2 ... $x_(i-1)$)$.
+- A common approach is to use a *finite context model*, where the probability of a symbol depends only on a limited number of preceding symbols: $p($x_(i)$ | x_(i-k) ... $x_(i-1)$)$.
 
 == Problems
 

@@ -48,7 +48,7 @@ Let's consider encoding "accabracadabrarrar" with a search buffer and look-ahead
 - And so on.
 
 *Typical Window Sizes*:
-- Search window: $2^{12}$ to $2^{16}$ bytes (e.g., gzip uses $2^{15}$ B).
+- Search window: $2^(12)$ to $2^(16)$ bytes (e.g., gzip uses $2^(15)$ B).
 - Look-ahead buffer: Tens to hundreds of bytes (e.g., gzip uses 256 B).
 
 == Properties of LZ77

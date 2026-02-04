@@ -44,7 +44,7 @@ Lossless compression techniques for images aim to reduce file size without any l
   - Features an *interlacing scheme* for progressive display during transmission.
   - Can embed textual information and control elements for animation delays.
 - *Compression Method*: Uses LZW-based compression.
-  - The dictionary size depends on the bits per pixel, typically $2^{b+1}$ to $2^{12}$.
+  - The dictionary size depends on the bits per pixel, typically $2^(b+1)$ to $2^(12)$.
   - Pointers (indices to the dictionary) are encoded with increasing length.
   - Data is organized into blocks, with special codes for end-of-block and end-of-file.
 
