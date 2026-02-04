@@ -85,16 +85,18 @@ The Elias Delta code is a further refinement that uses a shorter encoding for th
 
 #info_box(title: "Elias Delta Code $delta(i)$", [
   For an integer $i$:
-  1. Let $L = floor(log_2 i)$.
-  2. Let $L' = floor(log_2(L+1))$.
-  3. The code is $gamma(L+1) dot beta'(i)$.
-  - $delta(i) = gamma(floor(log_2 i) + 1) dot beta'(i)$
-  - The length is $| delta(i) | = floor(log_2(floor(log_2 i) + 1)) + 2 dot floor(log_2 i) + 1$.
-  - Example: $delta(5) = gamma(floor(log_2 5) + 1) dot beta'(5) = gamma(3) dot 01$. Since $gamma(3) = 110$, $delta(5) = 11001$.
+  1. Let $L = floor(log_2 i) + 1$ be the length of $beta(i)$.
+  2. The code is $gamma(L) dot beta'(i)$.
+  - The length is $| delta(i) | = |gamma(L)| + |beta'(i)| = (2 floor(log_2 L) + 1) + (floor(log_2 i)) = 2 floor(log_2(floor(log_2 i) + 1)) + floor(log_2 i) + 1$.
+  - Example: $delta(5)$:
+    - $i=5$, $beta(5)=101$, $L=3$, $beta'(5)=01$.
+    - We need $gamma(L) = gamma(3)$.
+    - To get $gamma(3)$: $beta(3)=11$, length is 2. The code is $alpha(2) dot beta'(3) = 10 dot 1 = 101$.
+    - So, $delta(5) = gamma(3) dot beta'(5) = 101 dot 01 = 10101$.
 
   *Properties*:
   - It is a prefix code.
-  - The length is approximately $log_2 i + 2 dot log_2(log_2 i)$. It is shorter than Gamma for larger $i$.
+  - The length is approximately $log_2 i + 2 log_2(log_2 i)$. It is shorter than Gamma for larger $i$.
 ])
 
 === Universality of Elias Codes
