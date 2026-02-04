@@ -24,12 +24,14 @@ Entropy, introduced by Claude Shannon, is a measure of the uncertainty or "infor
 Statistical methods assign codewords to symbols based on their probabilities. More frequent symbols receive shorter codes.
 
 #info_box(title: "Huffman Coding", [
+  This method builds a prefix code tree based on symbol frequencies, assigning shorter codes to more frequent symbols.
   - *Use Cases*: General-purpose compression (e.g., as part of Deflate), file archiving.
   - *Advantages*: Simple to implement, guarantees an optimal prefix code for a known probability distribution. The average code length $L$ is bounded by $H(X) <= L < H(X) + 1$.
   - *Disadvantages*: Requires two passes over the data (one to build frequencies, one to encode), not optimal for distributions with probabilities that are not powers of two.
 ])
 
 #info_box(title: "Adaptive Huffman (FGK)", [
+  This is a single-pass version of Huffman coding that dynamically updates the code tree as it processes the data, adapting to changing probabilities.
   - *Use Cases*: Situations where the data statistics change over time, streaming data.
   - *Advantages*: Single-pass algorithm, adapts to changing data probabilities.
   - *Disadvantages*: More complex to implement than static Huffman, can be less efficient than a two-pass approach if the data is static.
@@ -40,12 +42,14 @@ Statistical methods assign codewords to symbols based on their probabilities. Mo
 ])
 
 #info_box(title: "Arithmetic Coding", [
+  Encodes an entire message into a single fraction within the interval $[0, 1)$, with the size of the final sub-interval proportional to the message probability.
   - *Use Cases*: High-performance compression where compression ratio is critical (e.g., in some image and video codecs).
   - *Advantages*: Achieves near-optimal compression, even for non-power-of-two probability distributions. The average code length $L$ is bounded by $H(X) <= L < H(X) + 2$.
   - *Disadvantages*: Can be slower than Huffman coding, historically encumbered by patents.
 ])
 
 #info_box(title: "Prediction by Partial Matching (PPM)", [
+  This is a statistical method that uses a finite context model to predict the next symbol based on the preceding symbols, then encodes it using arithmetic coding.
   - *Use Cases*: High-performance text compression.
   - *Advantages*: Excellent compression ratios for text and other data with contextual dependencies.
   - *Disadvantages*: High memory usage, computationally intensive.
@@ -55,7 +59,8 @@ Statistical methods assign codewords to symbols based on their probabilities. Mo
 Dictionary methods replace repeated sequences of data with references to a dictionary.
 
 #info_box(title: "LZ77 (Lempel-Ziv 1977)", [
-  - *Use Cases*: General-purpose file compression (e.g., Deflate in ZIP/GZIP/PNG).
+  This dictionary method uses a sliding window to find repeated sequences in recently seen data and replaces them with a (length, distance) pair.
+  - *Use Cases*: General-purpose file compression (e.g., as part of Deflate in ZIP/GZIP/PNG).
   - *Advantages*: Fast decompression, single-pass algorithm.
   - *Disadvantages*: Compression can be slow due to the search for matches, greedy approach is not always optimal, limited by window size.
 ])
