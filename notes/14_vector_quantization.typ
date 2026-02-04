@@ -15,13 +15,13 @@ Vector Quantization (VQ) is a lossy compression technique that extends the conce
 
 == Vector Quantization Procedure
 1. *Encoder*:
-  a.  Takes an L-dimensional source vector.
-  b.  Searches the codebook to find the code-vector that is "closest" (minimizes a distortion measure, typically Mean Squared Error).
-  c.  Transmits the index of this best-matching code-vector.
+  - Takes an L-dimensional source vector.
+  - Searches the codebook to find the code-vector that is "closest" (minimizes a distortion measure, typically Mean Squared Error).
+  - Transmits the index of this best-matching code-vector.
 2. *Decoder*:
-  a.  Receives the index.
-  b.  Looks up the code-vector at that index in its codebook.
-  c.  Outputs this code-vector as the reconstructed vector.
+  - Receives the index.
+  - Looks up the code-vector at that index in its codebook.
+  - Outputs this come-vector as the reconstructed vector.
 
 *Compression Performance*:
 - *Rate (bits/sample)*: Given a codebook of size $K$ and vector dimension $L$, the rate is $R = (ceil(log_2 K)) / L$.

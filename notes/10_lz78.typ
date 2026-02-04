@@ -47,8 +47,8 @@ LZW is a highly influential variant of LZ78, known for its simplicity and widesp
   1. Initialize the dictionary with all single-character symbols of the input alphabet.
   2. `current_prefix` = first input symbol.
   3. For each subsequent input symbol `s`:
-    a.  `new_phrase` = `current_prefix` + `s`.
-    b.  If `new_phrase` is in the dictionary:
+    - `new_phrase` = `current_prefix` + `s`.
+    - If `new_phrase` is in the dictionary:
     - `current_prefix` = `new_phrase`.
     c.  Else (`new_phrase` is NOT in the dictionary):
     - Output the index of `current_prefix`.

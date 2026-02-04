@@ -16,9 +16,9 @@ The Huffman algorithm builds a prefix tree from the bottom up, starting with the
 
   1. Create a leaf node for each symbol and add it to a priority queue. The priority is determined by the frequency of the symbol, with lower frequencies having higher priority.
   2. While there is more than one node in the queue:
-    a. Extract the two nodes with the lowest frequencies (highest priorities) from the queue.
-    b. Create a new internal node with these two nodes as its children.
-    c. The frequency of this new node is the sum of the frequencies of its children.
+    - Extract the two nodes with the lowest frequencies (highest priorities) from the queue.
+    - Create a new internal node with these two nodes as its children.
+    - The frequency of this new node is the sum of the frequencies of its children.
     d. Add the new node back into the priority queue.
   3. The remaining node is the root of the Huffman tree.
 ])
