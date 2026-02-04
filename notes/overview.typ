@@ -6,12 +6,26 @@
 
 This document provides a brief overview of the main categories of data compression algorithms discussed in this course.
 
+== Information Theory
+Information theory provides a mathematical foundation for data compression, defining the absolute limits on how much data can be compressed.
+
+=== Entropy
+Entropy, introduced by Claude Shannon, is a measure of the uncertainty or "information content" of a random variable. It provides a theoretical lower bound for lossless compression.
+
+#info_box(title: "Entropy $H(X)$", [
+  For a discrete random variable $X$ with probability distribution $p(x)$, the entropy is:
+  $ H(X) = - sum_(x) p(x) log_2 p(x) $
+  - It represents the average number of bits required to encode a symbol from the source.
+  - A higher entropy indicates a more random and less compressible source.
+  - Shannon's Source Coding Theorem states that the average length of any uniquely decodable code will be greater than or equal to the entropy: $L(C) >= H(X)$.
+])
+
 == Statistical Methods
 Statistical methods assign codewords to symbols based on their probabilities. More frequent symbols receive shorter codes.
 
 #info_box(title: "Huffman Coding", [
   - *Use Cases*: General-purpose compression (e.g., as part of Deflate), file archiving.
-  - *Advantages*: Simple to implement, guarantees an optimal prefix code for a known probability distribution.
+  - *Advantages*: Simple to implement, guarantees an optimal prefix code for a known probability distribution. The average code length $L$ is bounded by $H(X) <= L < H(X) + 1$.
   - *Disadvantages*: Requires two passes over the data (one to build frequencies, one to encode), not optimal for distributions with probabilities that are not powers of two.
 ])
 
@@ -21,9 +35,13 @@ Statistical methods assign codewords to symbols based on their probabilities. Mo
   - *Disadvantages*: More complex to implement than static Huffman, can be less efficient than a two-pass approach if the data is static.
 ])
 
+#info_box(title: "Huffman vs. Arithmetic Coding", [
+  The fundamental difference is that Huffman coding assigns an integer number of bits to each symbol, while arithmetic coding can effectively assign fractional numbers of bits, leading to better compression.
+])
+
 #info_box(title: "Arithmetic Coding", [
   - *Use Cases*: High-performance compression where compression ratio is critical (e.g., in some image and video codecs).
-  - *Advantages*: Achieves near-optimal compression, even for non-power-of-two probability distributions.
+  - *Advantages*: Achieves near-optimal compression, even for non-power-of-two probability distributions. The average code length $L$ is bounded by $H(X) <= L < H(X) + 2$.
   - *Disadvantages*: Can be slower than Huffman coding, historically encumbered by patents.
 ])
 
