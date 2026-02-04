@@ -81,21 +81,31 @@ Quantization is the process of mapping values from a large (often continuous) se
 Adaptive quantizers adjust their parameters (e.g., step size, interval boundaries) based on the characteristics of the input signal.
 
 - *Forward Adaptive Quantization (Off-line)*: Analyzes blocks of input data first to set quantizer parameters, which are then transmitted as side information.
-- *Backward Adaptive Quantization (On-line)*: Adjusts parameters based on previously quantized (and decoded) samples. No side information is needed. The *Jayant quantizer* is a common example, where the step size is adjusted based on the output of the previous quantization step.
+- *Backward Adaptive Quantization (On-line)*: Adjusts parameters based on previously quantized (and decoded) samples. No side information is needed. The *Jayant quantizer* is a common example of a backward adaptive quantizer. It adjusts its step size $Delta_i$ based on the magnitude of the previously generated code word. The core idea is to increase the step size when the signal is changing rapidly (to avoid slope overload) and decrease it when the signal is relatively stable (to reduce granular noise).
+
+#info_box(title: "Jayant Quantizer Logic", [
+  Let $M_i$ be a multiplier for the step size at step $i$, and let $|c_(i-1)|$ be the magnitude of the previous codeword.
+  - The step size is updated as: $Delta_i = Delta_(i-1) dot M_(|c_(i-1)|)$.
+  - The multipliers $M$ are chosen such that:
+    - If $|c_(i-1)|$ is large, $M > 1$ (increase step size). This indicates the signal is likely in a high-slope region.
+    - If $|c_(i-1)|$ is small, $M < 1$ (decrease step size). This indicates the signal is in a low-slope or granular region.
+  - The multipliers are typically pre-determined and optimized for the expected signal statistics (e.g., speech).
+  - This method is robust and requires no side information, as the decoder can replicate the step size adaptation using the same logic on the received codewords.
+])
 
 #figure(
-  image("../figures/13-3bit_Jayant_quantizer.png", width: 80%),
+  image("../figures/13-3bit_Jayant_quantizer.png", width: 40%),
   caption: "A 3-bit Jayant quantizer.",
 )
 
 == Companding: $\mu$-law and A-law
 
+Companding (compressing + expanding) is a form of non-uniform quantization that first compresses the dynamic range of the analog signal before uniform quantization, and then expands it after decoding. This effectively provides more quantization levels for small amplitude signals.
+
 #figure(
   image("../figures/13-companding.png", width: 80%),
   caption: "An illustration of the companding process.",
 )
-
-Companding (compressing + expanding) is a form of non-uniform quantization that first compresses the dynamic range of the analog signal before uniform quantization, and then expands it after decoding. This effectively provides more quantization levels for small amplitude signals.
 
 - *$\mu$-law (Mu-law)*: Used in North American and Japanese telephony systems. It provides higher dynamic range and noise reduction in blocks of silence.
 - *A-law*: Used in European telephony systems. It offers lower relative distortion for small values.

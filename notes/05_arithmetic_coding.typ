@@ -32,7 +32,7 @@ The encoder starts with the interval $[0, 1)$ and progressively narrows it down 
   Assume the probabilities from the lecture slides.
   - Initial interval: $[0, 1)$
   - After 'B' (prob 0.1, range $[0.2, 0.3)$): New interval is $[0.2, 0.3)$.
-  - After 'I' (prob 0.1, range $[0.5, 0.6)$ within the new context): The interval becomes $[0.2 + 0.1 * 0.5, 0.2 + 0.1 * 0.6) = [0.25, 0.26)$.
+  - After 'I' (prob 0.1, range $[0.5, 0.6)$ within the new context): The interval becomes $[0.2 + 0.1 dot 0.5, 0.2 + 0.1 dot 0.6) = [0.25, 0.26)$.
   - After 'L' (prob 0.2, range $[0.6, 0.8)$): The interval becomes $[0.25 + 0.01*0.6, 0.25 + 0.01*0.8) = [0.256, 0.258)$.
   - And so on...
 ])
@@ -63,9 +63,9 @@ The core idea is to maintain the interval `[L, L+R)` and rescale it whenever pos
 #info_box(title: "Integer Encoding Steps", [
   For each `symbol` in the message:
   1. *Update the interval*: The range `R` is partitioned according to the symbol probabilities.
-    `L = L + R * symbol_lower_bound`
-    `R = R * symbol_probability`
-    (Note: these multiplications are integer operations, so proper scaling is needed, e.g., `(R * prob) / total_count`)
+    `L = L + R dot symbol_lower_bound`
+    `R = R dot symbol_probability`
+    (Note: these multiplications are integer operations, so proper scaling is needed, e.g., `(R dot prob) / total_count`)
 
   2. *Rescale and Output Bits (Renormalization)*: As `L` and `L+R` are updated, their most significant bits may become the same. When this happens, we can output these bits and expand the interval to maintain precision. This is repeated until the interval is no longer in a state where bits can be output.
 
@@ -87,7 +87,7 @@ The decoder mirrors the process, using the received bits to reconstruct the orig
 
   2. *Symbol Identification*:
     - Use the current `code` value to find which symbol's sub-interval it falls into. This is done by scaling the `code` relative to the current interval `[L, R)`.
-    - `current_value = ((code - L + 1) * total_count - 1) / R`
+    - `current_value = ((code - L + 1) dot total_count - 1) / R`
     - Find the symbol whose cumulative frequency range contains `current_value`.
 
   3. *Output and Update*:
@@ -104,11 +104,11 @@ Arithmetic coding can be made adaptive, just like Huffman coding. This is typica
 
 - To efficiently find the symbol corresponding to a given value, and to calculate cumulative frequencies, a data structure is needed.
 - A *Fenwick tree* (or Binary Indexed Tree) is an excellent choice for this. It allows for both point updates and prefix sum queries in $O(log n)$ time, where $n$ is the alphabet size.
-- This makes the decoding process much faster than a linear scan of the frequency table, bringing the complexity down to $O(n + c + m * log n)$.
+- This makes the decoding process much faster than a linear scan of the frequency table, bringing the complexity down to $O(n + c + m dot log n)$.
 
 == Precision and Complexity
 - *Precision Loss*: Using integer arithmetic introduces small roundoff errors, which can slightly increase the code length. However, with a sufficient number of bits for precision (e.g., b=32, f=24), the average code length increase is negligible (< 0.01 bit/symbol).
 - *Time Complexity*:
   - *Encoding*: $O(n + c + m)$, where c is the output code length in bits.
-  - *Decoding*: With a Fenwick tree, it becomes $O(n + c + m * log n)$.
+  - *Decoding*: With a Fenwick tree, it becomes $O(n + c + m dot log n)$.
   - The use of an implicit tree can further improve decoding time.
