@@ -42,11 +42,30 @@ Dictionary methods replace repeated sequences of data with references to a dicti
   - *Disadvantages*: Compression can be slow due to the search for matches, greedy approach is not always optimal, limited by window size.
 ])
 
-#info_box(title: "LZ78 and LZW", [
-  - *Use Cases*: GIF images (LZW), older `compress` utility (LZW).
-  - *Advantages*: Generally faster compression than LZ77, simple to implement.
-  - *Disadvantages*: Can be less effective than LZ77 on some data types, dictionary management can be complex (e.g., handling a full dictionary).
+#info_box(title: "LZSS (Lempel-Ziv-Storer-Szymanski)", [
+  - *Use Cases*: A popular variant of LZ77, often used in practice.
+  - *Advantages*: Improves on LZ77 by adding a flag to indicate whether the following data is a literal or a length-distance pair, which avoids the problem of pointers being longer than the string they replace.
+  - *Disadvantages*: Still limited by window size.
 ])
+
+#info_box(title: "LZ78", [
+  - *Use Cases*: Predecessor to LZW.
+  - *Advantages*: Builds an explicit dictionary of phrases encountered in the input.
+  - *Disadvantages*: The dictionary can grow very large. The output consists of pairs (dictionary index, next character).
+])
+
+#info_box(title: "LZW (Lempel-Ziv-Welch)", [
+  - *Use Cases*: GIF images, `compress` utility.
+  - *Advantages*: An improvement on LZ78. The dictionary is initialized with all possible single-character strings. The output consists only of dictionary indices.
+  - *Disadvantages*: Less effective than modern methods, patents were an issue historically.
+])
+
+== Lempel-Ziv Family Differences
+
+- *LZ77*: Refers to a sliding window of recently seen text. Output is a `(length, distance, next_char)` triplet.
+- *LZSS*: An improvement on LZ77. Uses a flag to distinguish between a literal and a `(length, distance)` pair. This avoids expanding the data.
+- *LZ78*: Builds a dictionary of phrases from the input stream. Output is a `(dictionary_index, next_char)` pair.
+- *LZW*: An improvement on LZ78. The dictionary is initialized with all single characters. Output is just a stream of dictionary indices.
 
 == Block-Sorting Methods
 These methods rearrange the data into a form that is easier to compress, typically by grouping similar characters together.

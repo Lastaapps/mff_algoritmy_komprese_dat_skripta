@@ -5,7 +5,7 @@
 = Introduction to Data Compression
 
 == Data Compression
-The process of converting an input data stream (source stream / original raw data) into an output data stream (compressed stream / bitstream) that has a smaller size.
+The process of converting an input data stream (source stream / original raw data) into an output data stream (compressed stream / bitstream) that has a smaller size. A code word is a unique binary representation assigned to each distinct data symbol in a dataset.
 
 #info_box(
   title: "Compression algorithm",

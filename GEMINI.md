@@ -55,6 +55,6 @@ Never use backslashes, only for escaping!!!
 ### Math Mode Variables and Subscripts
 
 - Variables in math mode should be directly written, e.g., $T$, $n$, $P$.
-- Multi-character subscripts or superscripts in math mode are enclosed in regular parentheses and followed by a space, e.g., `$h_("new") (x)$`, `$T^(T) dot A$`.
+- Multi-character subscripts or superscripts in math mode are enclosed in *regular parentheses* and followed by a space, e.g., `$h_("new") (x)$`, `$T^(T) dot A$`. Do not use curly brackets for subscripts and superscripts.
 - Use $ 1 dot 2 $ for multiplication and $ A times B $ for product.
 - NEVER PREFIX GREEK LETTERS BY BACKSLASH.
