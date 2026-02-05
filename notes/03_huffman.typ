@@ -87,7 +87,7 @@ The Kraft-McMillan inequality provides a condition for the existence of a unique
 
 #task(title: "Non-Huffman Optimal Codes", [
   *Question*: Is there an optimal prefix code which cannot be obtained using the Huffman algorithm? \
-  *Solution*: No. The Huffman algorithm is guaranteed to produce an optimal prefix code. Any other prefix code with the same average length is also optimal, but it can be shown that such codes can be transformed into a standard Huffman tree. For a given set of frequencies, while there might be multiple different optimal prefix codes (e.g., by swapping 0s and 1s), they all achieve the same minimum average codeword length, and at least one of them will be a Huffman code.
+  *Solution*: Yes. Bijection and stuff. By Huffman code we consider code produced by the algorithm above, it cannot produce every optimal code. #strike[No. The Huffman algorithm is guaranteed to produce an optimal prefix code. Any other prefix code with the same average length is also optimal, but it can be shown that such codes can be transformed into a standard Huffman tree. For a given set of frequencies, while there might be multiple different optimal prefix codes (e.g., by swapping 0s and 1s), they all achieve the same minimum average codeword length, and at least one of them will be a Huffman code.]
 ])
 
 #task(title: "M-ary Huffman Coding", [
