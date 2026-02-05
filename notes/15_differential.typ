@@ -18,7 +18,7 @@ DPCM is a fundamental differential encoding technique. It formalizes the idea of
   Instead of using the previous sample as a predictor, a more general function can be used. The goal is to make the prediction error $d_n$ as small as possible.
 
   - *Prediction*: A prediction $p_n$ of the current sample $x_n$ is made based on previous *reconstructed* samples:
-    $ p_n = f(hat(x)_(n-1), $hat(x)_(n-2)$, ...,$hat(x)_(0)$)$
+    $ p_n = f(hat(x)_(n-1), hat(x)_(n-2), dots,hat(x)_(0)) $
   - *Prediction Error*: The difference to be encoded is:
     $ d_n = x_n - p_n $
 
@@ -44,7 +44,7 @@ In practice, signal statistics can change over time. ADPCM adapts the predictor 
 === LMS (Least Mean Squared) Algorithm
 The LMS algorithm is a simple and effective method for backward adaptive prediction. It updates the predictor coefficients iteratively:
 $ A^(n+1) = A^(n) + alpha hat(d)_(n) hat(X)_(n-1) $
-where $A$ is the vector of coefficients, $alpha$ is a small learning rate, $hat{d}_n$ is the quantized difference, and $hat{X}_(n-1)$ is the vector of past reconstructed samples.
+where $A$ is the vector of coefficients, $alpha$ is a small learning rate, $hat(d)_n$ is the quantized difference, and $hat(X)_(n-1)$ is the vector of past reconstructed samples.
 
 === G.726 Standard
 G.726 is an ITU-T standard for speech compression based on ADPCM.
