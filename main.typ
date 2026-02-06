@@ -28,7 +28,7 @@
 #pagebreak()
 
 #outline(title: "Table of Contents", depth: 2)
-#pagebreak()
+#pagebreak(weak: true)
 
 #include "notes/overview.typ"
 

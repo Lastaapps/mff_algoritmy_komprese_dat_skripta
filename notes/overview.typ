@@ -6,6 +6,11 @@
 
 This document provides a brief overview of the main categories of data compression algorithms discussed in this course.
 
+== Other sources
+- #link("https://github.com/Lastaapps/mff_algoritmy_komprese_dat_skripta/")[Latest version]  of this lecture notes.
+- #link("https://wiki.matfyz.cz/NSWI072")[Matfyz Wiki]  page.
+- #link("https://youtube.com/playlist?list=PLiqLGdpbmTW0vTp-V-5Rr9c3KzCvCg4HQ")[Videos]  explaining some of the topics discussed here.
+
 == Information Theory
 Information theory provides a mathematical foundation for data compression, defining the absolute limits on how much data can be compressed.
 
